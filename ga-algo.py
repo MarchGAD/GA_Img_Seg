@@ -66,7 +66,10 @@ if __name__ == '__main__':
     import cv2 as cv
     import numpy as np
 
-    img  = cv.imread('./fisherman.jpg', cv.IMREAD_GRAYSCALE)
+    img_path = './fisherman.jpg'
+    # img_path = './lena.jpg'
+
+    img  = cv.imread(img_path, cv.IMREAD_GRAYSCALE)
     img = torch.from_numpy(img).float()
     ga = GAImageSeg()
     print('initial threshes are {}, {}'.format(*ga.threshes))
