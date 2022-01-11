@@ -9,7 +9,7 @@ class GAImageSeg:
         https://www.researchgate.net/publication/339595927_Multi-Thresholding_Image_Segmentation_Using_Genetic_Algorithm
     '''
 
-    def __init__(self, cross_prob=0.95, mute_prob=0.05) -> None:
+    def __init__(self, cross_prob=0.85, mute_prob=0.15) -> None:
         self.threshes = [torch.randint(0, 256, (1, 1))[0][0], torch.randint(0, 256, (1, 1))[0][0]]
         
         self.cross_prob = cross_prob
@@ -66,14 +66,14 @@ if __name__ == '__main__':
     import cv2 as cv
     import numpy as np
 
-    img_path = './fisherman.jpg'
-    # img_path = './lena.jpg'
+    # img_path = './fisherman.jpg'
+    img_path = './lena.jpg'
 
     img  = cv.imread(img_path, cv.IMREAD_GRAYSCALE)
     img = torch.from_numpy(img).float()
     ga = GAImageSeg()
     print('initial threshes are {}, {}'.format(*ga.threshes))
-    thresh, fit = ga.iter(img, 100)
+    thresh, fit = ga.iter(img, 5)
     print(f'thresh is {thresh}, fit is {fit}')
     mask = img > thresh
     img = 255 * mask.int().numpy().astype(np.uint8)

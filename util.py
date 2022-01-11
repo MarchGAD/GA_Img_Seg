@@ -49,7 +49,10 @@ def bin2dec(bin):
     return int(binstring, 2)
 
 def dec2bin(dec):
-    return [i for i in str(bin(dec))[2:]]
+    ans = [i for i in str(bin(dec))[2:]]
+    if len(ans) < 8:
+        ans += [str(0) for i in range(8 - len(ans))]
+    return ans
 
 if __name__ == '__main__':
     rolletwheel([8, 9], [7, 100])

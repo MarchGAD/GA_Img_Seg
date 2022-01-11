@@ -11,6 +11,8 @@ img = torch.from_numpy(img).float()
 fits = [(thresh, cal_fitness(img, thresh)) for thresh in range(256)]
 # show the change of fitness
 plt.plot([i[0] for i in fits], [i[1]for i in fits])
+plt.xlabel('grayscale_thresh')
+plt.ylabel('fitness')
 plt.show()
 best_fit = sorted(fits, key=lambda x:x[1])[-1]
 print(f'best_fit is {best_fit}')
